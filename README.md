@@ -1,51 +1,61 @@
 # SMIF Quantitative Division Repository
 
-Welcome to the SMIF Quantitative Division repository.
+Welcome to the **SMIF Quantitative Division repository**.
 
-This repository serves as the division’s central file storage for workshop materials, notebooks, datasets, practice files, and supporting resources used throughout the semester. We’ll continue adding materials here as the division progresses.
+This repository serves as the division's central file storage for **workshop materials, Jupyter notebooks, datasets, practice files, and supporting resources** used throughout the semester.
 
-The current notebook, testing-material-quants-smif.ipynb, is provided as an early reference point so you can familiarize yourself with the type of quantitative finance work we’ll be doing.
+We will continue adding materials here as the division progresses.
 
-If you’re new to Python or .ipynb Jupyter Notebook files, I strongly suggest opening the materials and experimenting with them now. If you already have experience with Python and notebooks, take some time to review the sample content and get a feel for the workflow and level of analysis.
+---
 
-Before We Begin
+## Current Material
 
-In the meantime, please download Anaconda, since this is what we’ll be using throughout the semester to manage Python, packages, and notebook environments.
+The current notebook:
 
-https://www.anaconda.com/download
+**`testing-material-quants-smif.ipynb`**
 
-If you are not familiar with Anaconda, Python environments, or the general setup process, you can also follow this playlist from a professional with experience in model development, validation, and quantitative risk:
+is provided as an early reference point so you can familiarize yourself with the type of quantitative finance work we will be doing.
 
-https://www.youtube.com/watch?v=QXh_hdm8KfA&list=PLBfqPS8Xvt2AZGPZkBT0cahppnzKrjsqp
+If you are **new to Python or `.ipynb` Jupyter Notebook files**, I strongly suggest opening the materials and experimenting with them now.
 
-Division Environment
+If you already have experience with Python and notebooks, take some time to review the sample content and get a feel for the workflow, calculations, and level of analysis.
 
-To keep everyone working with a consistent setup, the division will use the following dedicated environment:
+---
 
-Conda environment: smif-quant
-Python: 3.14
-Interface: JupyterLab or VS Code
-Kernel: Python (smif-quant)
+## Before We Begin
 
-Do not use Anaconda base/root for division work.
+### Download Anaconda
 
-The base/root environment is Anaconda’s main default environment. Instead of installing everything there, we use a separate environment called smif-quant.
+We will be using **Anaconda throughout the semester** to manage Python, packages, environments, and Jupyter notebooks.
 
-Think of smif-quant as its own isolated workspace. It has its own Python version and its own packages, which helps prevent updates or package changes from unrelated projects from interfering with the division’s work. It also makes it much easier for everyone to work with the same setup.
+**Download Anaconda here:**
 
-Suggested Reading and Practice
+[Download Anaconda](https://www.anaconda.com/download)
 
-A suggested reference for the division is:
+If you are not familiar with **Anaconda, Python environments, or the general setup process**, you can also follow the playlist below from a professional with experience in **model development, model validation, and quantitative risk**:
 
-Quantitative Finance with Case Studies in Python: A Practical Guide to Investment Management, Trading and Financial Engineering
-Chapman and Hall/CRC Financial Mathematics Series
+[Anaconda / Python Setup Playlist](https://www.youtube.com/watch?v=QXh_hdm8KfA&list=PLBfqPS8Xvt2AZGPZkBT0cahppnzKrjsqp)
 
-Please purchase the book or obtain a legal digital copy through the publisher, a library, or another authorized source.
+---
 
-The book’s companion repository is available here for future practice and workshops:
+## Division Environment
 
-https://github.com/lingyixu/Quantitative-Finance-with-Case-Studies-in-Python
+To keep everyone working with a consistent setup, the division will use the following environment:
 
-Community
+| Setting | Division Standard |
+|---|---|
+| **Conda Environment** | `smif-quant` |
+| **Python Version** | `3.14` |
+| **Interface** | JupyterLab or VS Code |
+| **Kernel** | `Python (smif-quant)` |
 
-This division is meant to be collaborative. Please feel free to share ideas, discuss concepts, suggest projects, and propose anything you would like to explore or build together with the group.
+> **Do not use Anaconda `base/root` for division work.**
+
+### Why are we using a separate environment?
+
+When Anaconda is installed, it includes a default environment commonly called **`base`** or **`root`**.
+
+Rather than installing every Python package into that main environment, we will create a dedicated environment called:
+
+```text
+smif-quant
