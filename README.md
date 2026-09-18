@@ -57,3 +57,28 @@ Instead, we use a separate environment called:
 
 ```text
 smif-quant
+```
+---
+
+# Suggested Reading & Practice
+
+One of the main reference and practice resources for the **SMIF Quantitative Division** is:
+
+## *Quantitative Finance with Case Studies in Python*
+
+**A Practical Guide to Investment Management, Trading and Financial Engineering**  
+*Chapman and Hall/CRC Financial Mathematics Series*
+
+This book will serve as one of the division's reference points for **quantitative finance applications in Python**, including topics that may be used in future workshops, practice sessions, and independent study.
+
+Please purchase the book or obtain a digital copy through the publisher, a library, or another source.
+
+## Companion GitHub Repository
+
+The book also includes a FREE companion GitHub repository with Python code, examples, datasets, and supporting materials:
+
+### [Quantitative Finance with Case Studies in Python — Companion Repository](https://github.com/lingyixu/Quantitative-Finance-with-Case-Studies-in-Python)
+
+If you would like to review material ahead of time, explore the repository and experiment with the examples.
+
+---
