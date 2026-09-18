@@ -22,6 +22,337 @@ before starting.
 
 
 ================================================
+START HERE — REQUIRED SETUP BEFORE YOU RUN ANY NOTEBOOK
+================================================
+
+IMPORTANT: You are NOT expected to already have "smif-quant" on your computer.
+
+The repository contains an environment.yml file. That file is the recipe Conda uses
+to CREATE the division environment for you.
+
+The full sequence is:
+
+    1. Install Anaconda.
+    2. Download the ENTIRE GitHub repository.
+    3. Extract the ZIP file.
+    4. Open Anaconda Prompt.
+    5. Navigate Anaconda Prompt into the extracted repository folder.
+    6. Run: conda env create -f environment.yml
+    7. Run: conda activate smif-quant
+    8. Open JupyterLab OR VS Code.
+    9. Open testing-material-quants-smif.ipynb.
+   10. Select the kernel: Python (smif-quant)
+   11. Restart the kernel if needed.
+   12. Run the notebook from the top.
+
+If you skip Step 6, the smif-quant environment may not exist.
+
+If you complete Step 6 but skip Step 10, the notebook may still run with the WRONG
+Python installation.
+
+Those are two different things:
+
+    ENVIRONMENT = the isolated Python setup containing Python + packages.
+    KERNEL      = the Python process Jupyter/VS Code actually uses to run the notebook.
+
+For this division:
+
+    Environment name: smif-quant
+    Python: 3.14
+    Kernel: Python (smif-quant)
+    Interface: JupyterLab OR VS Code
+
+DO NOT use:
+
+    base
+    quant
+    a global Python 3.14.x installation
+    another unrelated environment
+
+The exact Python patch version may display as 3.14.x (for example, 3.14.7). That is
+fine. What matters is that the environment name is smif-quant and that it was
+created from this repository's current environment.yml file.
+
+
+STEP-BY-STEP FIRST-TIME SETUP
+-----------------------------
+
+STEP A — INSTALL ANACONDA
+
+1. Download Anaconda from:
+
+       https://www.anaconda.com/download
+
+2. Install it normally.
+
+3. After installation, Windows should give you access to tools such as:
+
+       Anaconda Prompt
+       Anaconda Navigator
+       JupyterLab
+
+You do NOT need to install a second copy of Python manually for this division.
+
+
+STEP B — DOWNLOAD THE ENTIRE REPOSITORY
+
+On GitHub:
+
+1. Open the SMIF Quantitative Division repository.
+2. Click "Code".
+3. Click "Download ZIP".
+4. Save the ZIP.
+5. Extract the ZIP.
+
+DO NOT:
+
+    - work directly inside the ZIP
+    - download only the .ipynb file
+    - separate the notebook from its CSV files
+
+The project depends on the files being kept together.
+
+
+STEP C — OPEN ANACONDA PROMPT
+
+On Windows:
+
+1. Open the Start menu.
+2. Search for:
+
+       Anaconda Prompt
+
+3. Open it.
+
+You may initially see:
+
+       (base)
+
+at the beginning of the prompt.
+
+That is normal.
+
+However, base is NOT the division environment.
+
+
+STEP D — MOVE ANACONDA PROMPT INTO THE REPOSITORY FOLDER
+
+You need Anaconda Prompt to be "inside" the folder containing environment.yml.
+
+Example:
+
+       cd "C:\Users\YourName\Downloads\smif-quant-files"
+
+Your path WILL be different.
+
+To verify you are in the correct folder, the repository should contain files such as:
+
+       environment.yml
+       testing-material-quants-smif.ipynb
+       Amazon.csv
+       JPM.csv
+       stock_prices.csv
+       stock_data.csv
+
+
+STEP E — CREATE smif-quant
+
+Run:
+
+       conda env create -f environment.yml
+
+This command reads environment.yml and creates the division environment named:
+
+       smif-quant
+
+This is the step that gives your computer the isolated Python setup needed by the
+notebook.
+
+You normally do this ONCE.
+
+If Conda says smif-quant already exists, do not create random duplicate environments.
+Activate the existing environment and continue.
+
+
+STEP F — ACTIVATE smif-quant
+
+Run:
+
+       conda activate smif-quant
+
+You should now see something similar to:
+
+       (smif-quant)
+
+at the beginning of the Anaconda Prompt line.
+
+That means the environment is active.
+
+
+STEP G — MAKE THE JUPYTER KERNEL AVAILABLE
+
+Usually Jupyter/VS Code will detect smif-quant automatically.
+
+If "Python (smif-quant)" does NOT appear as a kernel option, run:
+
+       python -m ipykernel install --user --name smif-quant --display-name "Python (smif-quant)"
+
+Then restart JupyterLab or VS Code.
+
+
+STEP H — OPEN THE NOTEBOOK
+
+OPTION 1 — JUPYTERLAB
+
+With smif-quant activated in Anaconda Prompt, run:
+
+       jupyter lab
+
+Then:
+
+1. Navigate to the repository folder.
+2. Open:
+
+       testing-material-quants-smif.ipynb
+
+3. Check the kernel selector.
+4. Select:
+
+       Python (smif-quant)
+
+
+OPTION 2 — VS CODE
+
+Use your normal VS Code installation.
+
+1. Open VS Code.
+2. Choose:
+
+       File -> Open Folder
+
+3. Open the entire:
+
+       smif-quant-files
+
+   repository folder.
+
+4. Open:
+
+       testing-material-quants-smif.ipynb
+
+5. In the top-right kernel selector, choose:
+
+       Python (smif-quant)
+
+Depending on VS Code, it may appear as:
+
+       smif-quant (Python 3.14.x)
+
+That is correct.
+
+DO NOT select:
+
+       base
+       quant
+       Python 3.14.x Global
+       another unrelated environment
+
+
+STEP I — UNDERSTAND WHAT "KERNEL" MEANS
+
+The notebook file itself does not contain its own Python installation.
+
+The kernel is the Python process that ACTUALLY executes the notebook.
+
+The kernel determines:
+
+    - which Python version is used
+    - which packages are available
+    - which environment runs the code
+
+That is why a notebook can work under Python (smif-quant) and fail under another
+environment even when both say "Python 3.14".
+
+
+STEP J — VERIFY THE NOTEBOOK IS USING smif-quant
+
+Create a temporary code cell and run:
+
+       import sys
+       print(sys.executable)
+
+A correct result should contain something similar to:
+
+       anaconda3\envs\smif-quant\python.exe
+
+The full path will be different on every computer.
+
+That is NORMAL.
+
+The important part is:
+
+       envs\smif-quant
+
+
+STEP K — RUN THE NOTEBOOK
+
+Once the kernel is correct:
+
+1. Restart the kernel.
+2. Run the notebook from the top.
+3. Run cells in order.
+
+Do not jump randomly around on the first run because later cells may depend on
+variables created earlier.
+
+
+FASTEST TROUBLESHOOTING RULE
+----------------------------
+
+If you see:
+
+       ModuleNotFoundError
+
+DO NOT immediately install packages.
+
+First check the selected kernel.
+
+The correct kernel is:
+
+       Python (smif-quant)
+
+A common beginner mistake is:
+
+    smif-quant was created correctly,
+    BUT the notebook is still running under base, global Python, or another environment.
+
+That produces errors even though the correct packages already exist inside smif-quant.
+
+
+FINAL PRE-RUN CHECKLIST
+-----------------------
+
+Before pressing "Run All", confirm:
+
+    [ ] Anaconda is installed.
+    [ ] The entire GitHub repository was downloaded.
+    [ ] The ZIP was extracted.
+    [ ] environment.yml is present.
+    [ ] conda env create -f environment.yml was completed successfully.
+    [ ] smif-quant exists.
+    [ ] conda activate smif-quant works.
+    [ ] testing-material-quants-smif.ipynb is present.
+    [ ] Amazon.csv is present.
+    [ ] JPM.csv is present.
+    [ ] stock_prices.csv is present.
+    [ ] The selected kernel is Python (smif-quant).
+    [ ] sys.executable points to anaconda3\envs\smif-quant\python.exe (or equivalent).
+    [ ] You are ready to restart the kernel and run from the top.
+
+================================================
+
+
+================================================
 DIVISION STANDARD — USE THIS ENVIRONMENT
 ================================================
 
@@ -283,7 +614,7 @@ Navigator can manage the environment for you.
 After installation, close and reopen Anaconda Navigator if necessary.
 
 
-STEP 2 — CREATE THE division ENVIRONMENT
+STEP 2 — CREATE THE DIVISION ENVIRONMENT
 --------------------------------------
 
 The division standard is:
@@ -515,7 +846,6 @@ Example:
     Desktop
         -> Quants Presentation
         -> smif-quant-files
-        -> smif-quant-files
 
 You should be able to see:
 
@@ -532,7 +862,7 @@ suffixes.
 STEP 5 — OPEN THE NOTEBOOK
 --------------------------
 
-For the current workshop testing material, start with:
+For the current division testing material, start with:
 
     testing-material-quants-smif.ipynb
 
@@ -882,7 +1212,7 @@ likely to be reproducible for everyone else.
 PART 15 — OPTIONAL WORKFLOW: VS CODE
 ================================================
 
-You do NOT need VS Code to complete this workshop.
+You do NOT need VS Code to use the division notebook.
 
 JupyterLab is simpler for an absolute beginner.
 
@@ -1029,7 +1359,7 @@ In Colab, you would need to:
 
 That adds another layer of complexity.
 
-For this workshop, local Anaconda + JupyterLab is therefore the simplest baseline.
+For this division, local Anaconda + JupyterLab is therefore the simplest baseline.
 
 Once you understand how the project works locally, moving it to a cloud notebook
 environment is much easier.
@@ -1144,13 +1474,16 @@ MOST LIKELY CAUSE:
 CHECK:
     Which kernel is selected?
 
-If using smif-quant, activate it in Anaconda Prompt:
+First confirm that smif-quant is activated:
 
     conda activate smif-quant
 
-Then install:
+Then confirm the notebook kernel is:
 
-    python -m pip install yfinance
+    Python (smif-quant)
+
+If yfinance is still missing, compare your environment with the repository's
+current environment.yml before installing anything manually.
 
 
 
@@ -1433,7 +1766,7 @@ find them.
 PART 27 — INSTRUCTOR / REPOSITORY MAINTENANCE NOTES
 ================================================
 
-To make this workshop easier for beginners:
+To make this division repository easier for beginners:
 
 1. Keep one clean, known-working notebook in the repository.
 
