@@ -59,6 +59,7 @@ Rather than installing every Python package into that main environment, we will 
 
 ```text
 smif-quant
+```
 
 ## Suggested Reading & Practice
 
