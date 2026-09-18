@@ -1,0 +1,1506 @@
+SMIF QUANTITATIVE FINANCE WORKSHOP
+ABSOLUTE BEGINNER SETUP + JUPYTER NOTEBOOK GUIDE
+================================================
+
+PURPOSE OF THIS FILE
+--------------------
+This guide is written for someone who has little or no Python, Jupyter Notebook,
+data science, GitHub, or Anaconda experience.
+
+The goal is simple:
+
+1. Download the workshop repository from GitHub.
+2. Keep the project files together.
+3. Set up a clean Python environment with Anaconda.
+4. Open the notebooks locally.
+5. Run the notebooks correctly.
+6. Know what NOT to change.
+7. Know how to diagnose the most common beginner errors.
+
+You do NOT need to know Git, GitHub commands, Python environments, or data science
+before starting.
+
+
+================================================
+DIVISION STANDARD — USE THIS ENVIRONMENT
+================================================
+
+For this division, everyone should use the SAME dedicated Conda environment:
+
+    Conda environment: smif-quant
+    Python: 3.14
+    Interface: JupyterLab OR VS Code
+    Kernel: Python (smif-quant)
+
+DO NOT use Anaconda's base/root environment for division work.
+
+WHAT IS base/root?
+------------------
+When Anaconda is installed, it includes a default environment commonly called
+"base" or "root." Think of base/root as Anaconda's main home environment.
+
+It is better not to turn that main environment into a storage place for every
+package used by every class or project.
+
+Instead, this division uses a separate environment called:
+
+    smif-quant
+
+Think of smif-quant as its own self-contained workspace. It has its own Python
+version and its own installed packages. In practical terms, it "lives in its own
+place" so division work does not get mixed together with unrelated Python projects.
+
+WHY ARE WE DOING THIS?
+----------------------
+1. Everyone in the group uses the same Python version: Python 3.14.
+2. Everyone uses the same division environment: smif-quant.
+3. Packages for another project do not get mixed into division work.
+4. Updating or changing packages in a DIFFERENT environment does not change
+   smif-quant.
+5. Problems or package changes in base/root are less likely to affect this division.
+6. The notebook is much easier to reproduce on different members' computers.
+
+IMPORTANT:
+The environment is isolated, but it is not permanently frozen. If you deliberately
+update packages INSIDE smif-quant, you are changing smif-quant. For that reason,
+use the repository's environment.yml file as the division setup recipe and avoid
+unnecessary package upgrades.
+
+Whenever you open the notebook, confirm that the selected kernel is:
+
+    Python (smif-quant)
+
+The notebook file itself is not permanently tied to one Python installation.
+The kernel you select determines which Python version and packages actually run it.
+
+TESTED DIVISION SETUP
+---------------------
+The current notebook has been tested successfully using the standardized setup:
+
+    Conda environment: smif-quant
+    Python: 3.14
+    Kernel: Python (smif-quant)
+
+The exact environment path on your computer will be different from someone else's.
+That is normal. Do NOT copy another person's local Python path. Create smif-quant
+from this repository's environment.yml file and select Python (smif-quant).
+
+If you see a ModuleNotFoundError after setup, first check the active kernel before
+installing anything. A very common cause is accidentally running the notebook with
+base, a global Python installation, or another unrelated environment.
+
+
+================================================
+PART 1 — WHAT EACH TOOL IS ACTUALLY DOING
+================================================
+
+GitHub
+------
+GitHub is primarily where the workshop files are STORED and distributed.
+
+For this workshop, think of GitHub like a public project folder with version
+history.
+
+GitHub can DISPLAY a .ipynb Jupyter Notebook in your browser, but a normal GitHub
+repository does NOT execute the notebook code for you.
+
+In other words:
+
+    GitHub = where you get the files
+    Anaconda = how you manage the Python environment
+    JupyterLab / VS Code = where you actually run the code
+
+There are cloud-development products such as GitHub Codespaces, and notebooks can
+also be adapted for platforms such as Google Colab, but that is NOT the recommended
+beginner workflow for this project.
+
+The recommended beginner workflow is LOCAL:
+
+    GitHub -> Download the project -> Anaconda/Conda -> smif-quant -> JupyterLab or VS Code -> Run notebook
+
+
+Anaconda
+--------
+Anaconda is a Python distribution and environment-management system.
+
+It helps you avoid the common problem of having several different Python
+installations and not knowing which one is running your notebook.
+
+Anaconda Navigator is the graphical interface.
+
+For this workshop, Anaconda/Conda is used to create and manage one dedicated
+environment named smif-quant. Do not run the division from base/root.
+
+
+Jupyter Notebook / JupyterLab
+-----------------------------
+A .ipynb file is a Jupyter Notebook.
+
+A notebook contains separate "cells." Some cells contain text and explanations.
+Other cells contain Python code.
+
+You normally execute code cells one at a time from top to bottom.
+
+JupyterLab is the simplest interface for absolute beginners because the files are
+Jupyter notebooks. VS Code is also fully supported as long as the selected notebook
+kernel is Python (smif-quant).
+
+
+VS Code
+-------
+VS Code is an editor that can also run Jupyter notebooks.
+
+VS Code is optional for beginners, but it is fully supported for division work.
+
+If this is your first time working with notebooks, JupyterLab is usually simpler.
+If you prefer VS Code, use it — just select the Python (smif-quant) kernel.
+
+
+CSV files
+---------
+A .csv file is a plain-text data file organized in rows and columns.
+
+The notebooks in this project read CSV files directly.
+
+The notebook code expects several CSV files to have specific names and to be
+available from the notebook's working directory.
+
+For this first upload, students should treat the downloaded GitHub repository as
+one project folder. The notebook and the required CSV files should remain together
+at the same relative level unless the repository is intentionally reorganized later.
+
+
+================================================
+PART 2 — IMPORTANT FILES IN THIS REPOSITORY
+================================================
+
+The supplied notebooks use these data filenames:
+
+    Amazon.csv
+    JPM.csv
+    stock_prices.csv
+
+The notebooks also write an output file named:
+
+    stock_data.csv
+
+The notebooks include relative references such as:
+
+    pd.read_csv('Amazon.csv')
+    pd.read_csv('JPM.csv')
+    pd.read_csv('stock_prices.csv')
+    df.to_csv('stock_data.csv')
+
+This is IMPORTANT.
+
+There are no hard-coded personal Windows paths such as:
+
+    C:\Users\Someone\Desktop\...
+
+in the supplied notebooks for those files.
+
+That means the folder can be moved or renamed as a complete unit without breaking
+those references.
+
+However, the relationship BETWEEN the files matters.
+
+
+RECOMMENDED FOLDER STRUCTURE
+----------------------------
+
+For the version being distributed to students, keep the repository approximately like this:
+
+    smif-quant-files/
+    |
+    |-- testing-material-quants-smif.ipynb
+    |-- Amazon.csv
+    |-- JPM.csv
+    |-- stock_prices.csv
+    |-- stock_data.csv
+    |-- anaconda_and_python_BEGINNER_setup_guide_quants.txt
+    |-- environment.yml                   (if included in the repository)
+
+Your notebook filenames may contain "(1)" or another duplicate-download suffix on
+your own computer. That does not matter because the notebooks do not load one
+another by filename.
+
+The CSV filenames DO matter because the Python code explicitly refers to them.
+
+IMPORTANT NOTEBOOK NAME
+-----------------------
+The notebook distributed to students is:
+
+    testing-material-quants-smif.ipynb
+
+Use this exact notebook name throughout the division instructions and repository.
+
+
+CRITICAL BEGINNER RULE
+----------------------
+
+Keep the notebooks and the required CSV files together unless you intentionally
+change the Python file paths.
+
+GOOD:
+
+    smif-quant-files/
+        testing-material-quants-smif.ipynb
+        Amazon.csv
+        JPM.csv
+        stock_prices.csv
+
+BAD:
+
+    smif-quant-files/
+        testing-material-quants-smif.ipynb
+
+    Downloads/
+        Amazon.csv
+
+because the notebook may look for Amazon.csv in its current working directory and
+fail to find it.
+
+
+================================================
+PART 3 — FIRST-TIME INSTALLATION
+================================================
+
+STEP 1 — INSTALL ANACONDA
+-------------------------
+
+Install the Anaconda Distribution for your operating system.
+
+After installation, you should have applications such as:
+
+    Anaconda Navigator
+    Anaconda Prompt
+    JupyterLab
+
+If Windows asks whether you want to add Anaconda to the system PATH, beginners
+generally do not need to change advanced PATH settings. Anaconda Prompt and
+Navigator can manage the environment for you.
+
+After installation, close and reopen Anaconda Navigator if necessary.
+
+
+STEP 2 — CREATE THE division ENVIRONMENT
+--------------------------------------
+
+The division standard is:
+
+    Environment name: smif-quant
+    Python version: 3.14
+    Interface: JupyterLab OR VS Code
+    Kernel name: Python (smif-quant)
+
+DO NOT use base/root for the division.
+
+PREFERRED METHOD — USE environment.yml
+--------------------------------------
+
+The GitHub repository should include:
+
+    environment.yml
+
+That file is the setup recipe for the division environment. It tells Conda which
+Python version and packages should be installed.
+
+1. Download and EXTRACT the full GitHub repository.
+2. Open Anaconda Prompt.
+3. Change into the extracted repository folder.
+
+   Example only:
+
+       cd "C:\Users\YourName\Downloads\smif-quant-files"
+
+   Your exact path will be different.
+
+4. Run:
+
+       conda env create -f environment.yml
+
+5. Activate the environment:
+
+       conda activate smif-quant
+
+6. If needed, register the notebook kernel:
+
+       python -m ipykernel install --user --name smif-quant --display-name "Python (smif-quant)"
+
+If you see:
+
+    (smif-quant)
+
+at the beginning of Anaconda Prompt, the environment is active.
+
+If Conda says the environment already exists, do NOT create random duplicate
+environments. Activate the existing smif-quant environment or follow the updated
+repository instructions.
+
+Once smif-quant has been created successfully, you normally do NOT need to run
+`conda env create -f environment.yml` again every time you work. Future sessions
+usually begin by activating smif-quant and opening JupyterLab or VS Code.
+
+
+MANUAL FALLBACK
+---------------
+
+Only if environment.yml is unavailable, create the environment manually:
+
+    conda create -n smif-quant python=3.14 -y
+    conda activate smif-quant
+
+Then install the packages required by the repository.
+
+Using environment.yml is preferred because it makes the setup more consistent
+across the whole group.
+
+
+================================================
+PART 4 — PACKAGES AND WHY environment.yml MATTERS
+================================================
+
+The notebook uses external Python packages for data analysis, visualization, and
+market data. The standardized smif-quant environment is intended to provide the
+required packages, including tools such as:
+
+    pandas
+    numpy
+    matplotlib
+    seaborn
+    plotly
+    yfinance
+    nbformat
+    jupyterlab
+    ipykernel
+
+Python also includes standard-library modules such as:
+
+    datetime
+    random
+
+Standard-library modules come with Python and do not need to be installed
+separately.
+
+For this division, environment.yml should be treated as the source of truth for the
+environment. Beginners should NOT install random packages into base/root and should
+not repeatedly install packages inside notebook cells unless the division instructions
+specifically require it.
+
+After creating the environment, activate it:
+
+    conda activate smif-quant
+
+Then either launch JupyterLab:
+
+    jupyter lab
+
+OR open the repository in normal VS Code and select:
+
+    Python (smif-quant)
+
+as the notebook kernel.
+
+
+OPTIONAL QUICK TEST
+-------------------
+
+Inside the activated smif-quant environment, you can run:
+
+    python -c "import pandas, numpy, matplotlib, seaborn, plotly, yfinance, nbformat; print('Environment ready')"
+
+If everything is installed correctly, you should see:
+
+    Environment ready
+
+If you receive ModuleNotFoundError, first confirm that you activated smif-quant
+and that the notebook is using Python (smif-quant). Do not immediately install the
+missing package into base/root.
+
+
+================================
+PART 5 — DOWNLOAD THE REPOSITORY FROM GITHUB
+================================================
+
+FOR BEGINNERS: USE "DOWNLOAD ZIP"
+---------------------------------
+
+1. Open the SMIF Quantitative Division repository on GitHub.
+2. Click the green "Code" button.
+3. Choose "Download ZIP."
+4. Save the ZIP file.
+5. Go to your Downloads folder.
+6. Right-click the ZIP file.
+7. Choose "Extract All..." or your operating system's equivalent.
+8. Choose a normal location such as:
+
+       Documents\SMIF\
+       Desktop\SMIF\
+
+9. Open the EXTRACTED folder.
+
+DO NOT work directly from inside the ZIP archive.
+
+A ZIP archive can look like a normal folder, but programs may not behave as
+expected if files have not actually been extracted.
+
+
+VERY IMPORTANT
+--------------
+
+Download the WHOLE repository.
+
+Do not download only the .ipynb notebook and leave the CSV files behind.
+
+The notebook depends on its accompanying data files.
+
+
+OPTIONAL ADVANCED METHOD — GIT CLONE
+------------------------------------
+
+If you already know Git, you may clone the repository instead:
+
+    git clone <repository-url>
+
+This gives you the Git version history and makes future pulls easier.
+
+For a first workshop, Download ZIP is completely acceptable and is simpler.
+
+
+================================================
+PART 6 — RECOMMENDED BEGINNER WORKFLOW: JUPYTERLAB
+================================================
+
+This is the recommended route for someone starting from zero.
+
+
+STEP 1 — OPEN ANACONDA NAVIGATOR
+--------------------------------
+
+Open Anaconda Navigator.
+
+
+STEP 2 — SELECT THE CORRECT ENVIRONMENT
+---------------------------------------
+
+Make sure you are using:
+
+    smif-quant
+
+If Navigator gives you an environment/application filter, choose the smif-quant
+environment before launching JupyterLab.
+
+
+STEP 3 — LAUNCH JUPYTERLAB
+--------------------------
+
+Launch JupyterLab.
+
+JupyterLab normally opens in your web browser, but it is running Python on YOUR
+computer.
+
+This is normal.
+
+The browser tab is the interface; the Python kernel is local.
+
+
+STEP 4 — NAVIGATE TO THE PROJECT FOLDER
+---------------------------------------
+
+Inside JupyterLab's file browser, navigate to the location where you extracted the
+repository.
+
+Example:
+
+    Desktop
+        -> Quants Presentation
+        -> smif-quant-files
+        -> smif-quant-files
+
+You should be able to see:
+
+    testing-material-quants-smif.ipynb
+    Amazon.csv
+    JPM.csv
+    stock_prices.csv
+    stock_data.csv
+
+The exact notebook names can vary slightly if they have duplicate-download
+suffixes.
+
+
+STEP 5 — OPEN THE NOTEBOOK
+--------------------------
+
+For the current workshop testing material, start with:
+
+    testing-material-quants-smif.ipynb
+
+Double-click it.
+
+
+STEP 6 — VERIFY THE PYTHON KERNEL
+---------------------------------
+
+At the top-right area of a Jupyter notebook, JupyterLab shows the active kernel.
+
+Ideally, the notebook should run with the Python kernel associated with:
+
+    smif-quant
+
+If Jupyter asks you to choose a kernel, select the one associated with that
+environment.
+
+If the environment does not appear as a kernel, activate the environment in
+Anaconda Prompt and run:
+
+    python -m ipykernel install --user --name smif-quant --display-name "Python (smif-quant)"
+
+Then reopen JupyterLab.
+
+
+STEP 7 — RUN CELLS FROM TOP TO BOTTOM
+-------------------------------------
+
+Use the Run button or press:
+
+    Shift + Enter
+
+to execute a cell and move to the next cell.
+
+For your FIRST run, execute the notebook in order from the beginning.
+
+Do not jump randomly around the notebook.
+
+Why?
+
+Later cells often depend on variables created by earlier cells.
+
+
+EXAMPLE
+-------
+
+Suppose Cell 5 creates:
+
+    prices = ...
+
+and Cell 12 uses:
+
+    prices.mean()
+
+If you execute Cell 12 before Cell 5, Python may return:
+
+    NameError: name 'prices' is not defined
+
+The code may be perfectly correct. The cells were simply run out of order.
+
+
+================================================
+PART 7 — WHAT "RELATIVE PATH" MEANS
+================================================
+
+This is one of the most important concepts for this project.
+
+The notebook contains code such as:
+
+    pd.read_csv('Amazon.csv')
+
+Python is NOT being told:
+
+    "Go to Daniel's Desktop and find Amazon.csv."
+
+It is being told:
+
+    "Look for a file named Amazon.csv relative to the current working location."
+
+That makes the project portable.
+
+
+ABSOLUTE PATH EXAMPLE
+---------------------
+
+An absolute path would look like:
+
+    C:\Users\John\Desktop\smif-quant-files\Amazon.csv
+
+That would work only on a computer with that exact folder structure.
+
+It is BAD for a project intended to be distributed to many people.
+
+
+RELATIVE PATH EXAMPLE
+---------------------
+
+    pd.read_csv('Amazon.csv')
+
+This is portable as long as the notebook is running from the expected project
+location and Amazon.csv is there.
+
+
+WHY YOU SHOULD MOVE THE FOLDER AS ONE UNIT
+------------------------------------------
+
+You can do this:
+
+    Desktop\smif-quant-files
+
+and later move the whole folder to:
+
+    Documents\FIU\SMIF\Quant\smif-quant-files
+
+The relative relationship between:
+
+    notebook <-> Amazon.csv
+
+has not changed.
+
+Therefore the code can still find the file.
+
+
+================================================
+PART 8 — HOW TO CHECK YOUR WORKING DIRECTORY
+================================================
+
+If you ever get a file-not-found error, create a temporary notebook cell and run:
+
+    import os
+    print(os.getcwd())
+
+This tells you where Python currently believes it is working.
+
+Then run:
+
+    print(os.listdir())
+
+This shows the files Python can currently see in that directory.
+
+If you expect to see:
+
+    Amazon.csv
+
+but Amazon.csv is not listed, you have found the problem.
+
+
+GOOD DIAGNOSTIC CELL
+--------------------
+
+    import os
+
+    print("Current folder:")
+    print(os.getcwd())
+
+    print("\nFiles in this folder:")
+    print(os.listdir())
+
+This small check solves a very large percentage of beginner path problems.
+
+
+================================================
+PART 9 — DO NOT RENAME THESE DATA FILES CASUALLY
+================================================
+
+The code explicitly expects:
+
+    Amazon.csv
+    JPM.csv
+    stock_prices.csv
+
+If you rename:
+
+    Amazon.csv
+
+to:
+
+    amazon_data.csv
+
+the notebook will no longer find it unless you also change the code.
+
+Likewise, be careful with capitalization on operating systems where filenames are
+case-sensitive.
+
+For example:
+
+    JPM.csv
+
+and:
+
+    jpm.csv
+
+may not always be treated as the same filename.
+
+
+================================================
+PART 10 — IMPORTANT NOTE ABOUT stock_data.csv
+================================================
+
+The supplied notebooks contain:
+
+    df.to_csv('stock_data.csv')
+
+That means the notebook can WRITE a file named:
+
+    stock_data.csv
+
+If a stock_data.csv file already exists, running the writing cell may replace or
+update the file depending on how the code is executed.
+
+Therefore:
+
+1. Treat stock_data.csv as an output file.
+2. Keep a backup if you have manually changed it.
+3. Do not store irreplaceable work only in that file.
+
+
+================================================
+PART 11 — INTERNET CONNECTION
+================================================
+
+The notebook uses yfinance to retrieve Yahoo Finance market data.
+
+Therefore, some cells require an internet connection.
+
+A local CSV-reading cell can work offline.
+
+A live market-data retrieval cell cannot retrieve new data without network access.
+
+
+If a live-data cell fails, distinguish between:
+
+    A. "Python cannot find my local CSV file"
+
+and:
+
+    B. "The external data source did not respond"
+
+Those are completely different problems.
+
+
+================================================
+PART 12 — WHAT TO DO WITH PACKAGE-INSTALL CELLS INSIDE THE NOTEBOOK
+================================================
+
+The smif-quant environment should already contain the packages required by the
+division through environment.yml.
+
+That means you generally should NOT need to run package-install commands every time
+you open the notebook.
+
+If an old notebook cell contains a %pip install or similar installation command,
+follow the current repository instructions. The standardized environment is
+preferred because it keeps everyone on the same setup.
+
+Do not install division packages into base/root just because a notebook reports a
+missing module. First verify:
+
+    1. smif-quant is activated.
+    2. The notebook kernel is Python (smif-quant).
+    3. The environment was created from the current environment.yml.
+
+
+================================
+PART 13 — SAVING YOUR WORK
+================================================
+
+A notebook can contain:
+
+    code
+    text
+    charts
+    printed results
+    cell outputs
+
+Save frequently.
+
+In JupyterLab:
+
+    Ctrl + S
+
+is the normal save shortcut on Windows.
+
+
+BEST BEGINNER PRACTICE
+----------------------
+
+Before experimenting heavily, create your own working copy.
+
+Example:
+
+    testing-material-quants-smif.ipynb
+
+becomes:
+
+    testing-material-quants-smif_working-copy.ipynb
+
+or:
+
+    testing-material-quants-smif_working-copy.ipynb
+
+Then you always retain a clean original.
+
+
+================================================
+PART 14 — RESTARTING THE KERNEL
+================================================
+
+A Jupyter "kernel" is the Python process running the notebook.
+
+It remembers variables created during the current session.
+
+Example:
+
+You run:
+
+    x = 10
+
+The kernel remembers x.
+
+If you close/restart the kernel, that memory disappears until you rerun the cell.
+
+
+WHY "RESTART KERNEL AND RUN ALL" IS IMPORTANT
+---------------------------------------------
+
+During experimentation, you may accidentally create hidden state.
+
+For example:
+
+1. You run Cell 20.
+2. You change Cell 5.
+3. You rerun only Cell 20.
+4. The notebook appears to work because old variables are still stored in memory.
+
+A clean test is:
+
+    Restart Kernel
+    Run All Cells
+
+If the notebook works from a completely fresh kernel, the notebook is much more
+likely to be reproducible for everyone else.
+
+
+================================================
+PART 15 — OPTIONAL WORKFLOW: VS CODE
+================================================
+
+You do NOT need VS Code to complete this workshop.
+
+JupyterLab is simpler for an absolute beginner.
+
+If you prefer VS Code, use this workflow.
+
+
+STEP 1 — INSTALL VS CODE
+------------------------
+
+Install Visual Studio Code separately if it is not already installed.
+
+
+STEP 2 — INSTALL VS CODE EXTENSIONS
+-----------------------------------
+
+Inside VS Code, install the official Microsoft:
+
+    Python extension
+    Jupyter extension
+
+
+STEP 3 — OPEN THE ENTIRE PROJECT FOLDER
+---------------------------------------
+
+Do NOT open only the notebook file in isolation.
+
+In VS Code choose:
+
+    File -> Open Folder
+
+and select the downloaded repository folder:
+
+    smif-quant-files
+
+This keeps testing-material-quants-smif.ipynb and its CSV files together as one
+workspace.
+
+
+STEP 4 — OPEN THE NOTEBOOK
+--------------------------
+
+Open:
+
+    testing-material-quants-smif.ipynb
+
+
+STEP 5 — CHOOSE THE KERNEL
+--------------------------
+
+Use "Select Kernel" and choose:
+
+    Python (smif-quant)
+
+Depending on VS Code, it may appear as "smif-quant (Python 3.14.x)". That is also
+correct as long as the environment name is smif-quant.
+
+Do NOT choose base, a global Python installation, or another unrelated environment.
+
+
+STEP 6 — RUN CELLS IN ORDER
+---------------------------
+
+Run the notebook top to bottom just as you would in JupyterLab.
+
+
+IMPORTANT VS CODE PATH RULE
+---------------------------
+
+If a notebook cannot find Amazon.csv in VS Code, first confirm that you opened the
+smif-quant-files REPOSITORY FOLDER as your workspace.
+
+Then check:
+
+    import os
+    print(os.getcwd())
+    print(os.listdir())
+
+Do not immediately "fix" the problem by hard-coding your personal C:\Users\...
+path into the notebook.
+
+That may fix it only for you and break the shared project for everyone else.
+
+
+================================================
+PART 16 — GITHUB IS NOT THE SAME THING AS JUPYTERLAB
+================================================
+
+A common beginner misunderstanding is:
+
+    "I see the notebook on GitHub, so should I run it there?"
+
+Normally, no.
+
+When you click a .ipynb file on GitHub, GitHub renders a preview.
+
+That lets you READ:
+
+    code
+    explanations
+    saved outputs
+    saved charts
+
+but a standard GitHub repository page is not a live notebook runtime.
+
+For this workshop, do this:
+
+    GitHub
+       |
+       v
+    Download / clone files
+       |
+       v
+    Local project folder
+       |
+       v
+    Anaconda environment
+       |
+       v
+    JupyterLab or VS Code
+       |
+       v
+    Run Python
+
+
+================================================
+PART 17 — WHY NOT USE GOOGLE COLAB FOR THIS FIRST?
+================================================
+
+Google Colab can run Jupyter notebooks in the cloud.
+
+However, the supplied notebooks currently assume that local files such as:
+
+    Amazon.csv
+    JPM.csv
+    stock_prices.csv
+
+are available through simple relative paths.
+
+In Colab, you would need to:
+
+    upload those files,
+    mount cloud storage,
+    or modify file-loading logic.
+
+That adds another layer of complexity.
+
+For this workshop, local Anaconda + JupyterLab is therefore the simplest baseline.
+
+Once you understand how the project works locally, moving it to a cloud notebook
+environment is much easier.
+
+
+================================================
+PART 18 — DO'S
+================================================
+
+DO download or clone the entire project.
+
+DO extract the ZIP before working with it.
+
+DO keep the notebook and its CSV files together.
+
+DO preserve the exact filenames expected by the notebook.
+
+DO use a dedicated Anaconda environment.
+
+DO verify that the notebook is using the smif-quant kernel.
+
+DO run the notebook from top to bottom on your first attempt.
+
+DO save your work frequently.
+
+DO make a working copy before making major changes.
+
+DO use relative paths when adding new project files.
+
+DO check os.getcwd() and os.listdir() if a file cannot be found.
+
+DO restart the kernel and run all cells before concluding that your notebook works.
+
+DO keep an internet connection available for cells retrieving live market data.
+
+DO close files in Excel if Python reports that a CSV is locked or cannot be
+written.
+
+DO keep backups of files you manually modify.
+
+DO ask what an error means before randomly changing several lines of code at once.
+
+
+================================================
+PART 19 — DON'TS
+================================================
+
+DO NOT work directly inside the downloaded ZIP archive.
+
+DO NOT download only the notebook while ignoring its supporting CSV files.
+
+DO NOT move Amazon.csv, JPM.csv, or stock_prices.csv away from the notebook unless
+you also intentionally update the paths.
+
+DO NOT rename project files casually.
+
+DO NOT solve a path problem by adding your personal absolute path such as:
+
+    C:\Users\YourName\Desktop\...
+
+to a notebook intended for the whole club.
+
+DO NOT run cells randomly out of order on your first run.
+
+DO NOT install packages into several different Python environments without knowing
+which environment the notebook is using.
+
+DO NOT assume that because a package is installed somewhere on your computer, it
+is installed in the notebook's active environment.
+
+DO NOT delete the original notebook before confirming that your edited copy works.
+
+DO NOT put passwords, API keys, account credentials, or private personal
+information into a public GitHub repository.
+
+DO NOT upload copyrighted books, paid division materials, or other files to the
+public repository unless distribution is authorized.
+
+DO NOT assume GitHub itself is executing the notebook just because GitHub displays
+it.
+
+
+================================================
+PART 20 — COMMON ERRORS AND WHAT THEY USUALLY MEAN
+================================================
+
+ERROR:
+    FileNotFoundError: [Errno 2] No such file or directory: 'Amazon.csv'
+
+MOST LIKELY CAUSE:
+    Python is working from a folder where Amazon.csv is not available, or the file
+    was renamed/moved.
+
+CHECK:
+
+    import os
+    print(os.getcwd())
+    print(os.listdir())
+
+Then verify that Amazon.csv appears in the list.
+
+
+------------------------------------------------
+
+ERROR:
+    ModuleNotFoundError: No module named 'yfinance'
+
+MOST LIKELY CAUSE:
+    yfinance is not installed in the environment used by the notebook, OR the
+    notebook is using the wrong kernel.
+
+CHECK:
+    Which kernel is selected?
+
+If using smif-quant, activate it in Anaconda Prompt:
+
+    conda activate smif-quant
+
+Then install:
+
+    python -m pip install yfinance
+
+
+
+
+------------------------------------------------
+
+ERROR:
+    NameError: name 'something' is not defined
+
+MOST LIKELY CAUSE:
+    A previous cell that creates "something" was not run.
+
+FIX:
+    Start at the top and run cells in order.
+
+A clean solution is often:
+
+    Restart Kernel -> Run All
+
+
+------------------------------------------------
+
+ERROR:
+    PermissionError
+
+POSSIBLE CAUSE:
+    A CSV file may be open in another program, such as Excel, while Python is
+    attempting to overwrite it.
+
+FIX:
+    Close the file in Excel and rerun the cell.
+
+
+------------------------------------------------
+
+ERROR:
+    Kernel appears to use the wrong packages
+    OR you receive ModuleNotFoundError even though setup was completed.
+
+CAUSE:
+    The notebook may be running a different Python interpreter from the one where
+    the division packages are installed.
+
+FIX:
+    Select the "Python (smif-quant)" kernel.
+
+    In VS Code, do not choose:
+        base
+        a global Python 3.14.x interpreter
+        another environment such as quant
+
+    The exact local path to smif-quant differs by computer. That is normal.
+
+If necessary:
+
+    conda activate smif-quant
+    python -m ipykernel install --user --name smif-quant --display-name "Python (smif-quant)"
+
+
+------------------------------------------------
+
+ERROR:
+    Yahoo Finance / yfinance request fails
+
+POSSIBLE CAUSES:
+    No internet connection.
+    Temporary external data-source problem.
+    Package compatibility/version issue.
+    The external provider changed behavior.
+
+FIRST:
+    Confirm that your internet connection works.
+
+SECOND:
+    Confirm that yfinance is installed in smif-quant and that Python (smif-quant) is the active kernel.
+
+Do not start moving local CSV files around; a web-data retrieval error is not the
+same thing as a local file-path error.
+
+
+================================================
+PART 21 — IF YOUR PROJECT IS INSIDE ONEDRIVE
+================================================
+
+A project stored under OneDrive can still work.
+
+However, OneDrive may use cloud-only placeholders for files that are not currently
+downloaded to the computer.
+
+If Windows shows that a project file is cloud-only, download it locally before the
+workshop.
+
+A green check mark normally indicates that the file is available locally.
+
+If OneDrive synchronization creates confusion, you can also place the extracted
+workshop folder in a normal local Documents folder for the session.
+
+The key requirement is that Python can access the actual files.
+
+
+================================================
+PART 22 — SIMPLE PRE-WORKSHOP CHECKLIST
+================================================
+
+Before the workshop begins, confirm all of the following:
+
+[ ] Anaconda is installed.
+
+[ ] The smif-quant environment exists.
+
+[ ] Required packages are installed.
+
+[ ] The GitHub repository has been downloaded and extracted.
+
+[ ] You are NOT working inside the ZIP file.
+
+[ ] testing-material-quants-smif.ipynb is present.
+
+[ ] Amazon.csv is present.
+
+[ ] JPM.csv is present.
+
+[ ] stock_prices.csv is present.
+
+[ ] JupyterLab opens successfully.
+
+[ ] The notebook uses the smif-quant kernel.
+
+[ ] You can run:
+
+        import pandas as pd
+
+    without an error.
+
+[ ] You can run:
+
+        pd.read_csv('Amazon.csv')
+
+    from the notebook's expected project location without FileNotFoundError.
+
+[ ] You have internet access for the cells that retrieve market data.
+
+
+================================================
+PART 23 — FIVE-MINUTE STARTING PROCEDURE AFTER INITIAL SETUP
+================================================
+
+Once your computer has already been configured, a normal future session should be
+much shorter.
+
+OPTION A — JUPYTERLAB
+
+1. Open Anaconda Prompt.
+2. Run:
+
+       conda activate smif-quant
+
+3. Run:
+
+       jupyter lab
+
+4. Navigate to the downloaded/extracted repository folder:
+
+       smif-quant-files
+
+5. Open:
+
+       testing-material-quants-smif.ipynb
+
+6. Confirm the kernel is:
+
+       Python (smif-quant)
+
+7. Run the notebook from the top.
+
+
+OPTION B — VS CODE
+
+1. Open the smif-quant-files repository folder in your normal VS Code installation.
+2. Open testing-material-quants-smif.ipynb.
+3. Select the kernel:
+
+       Python (smif-quant)
+
+4. Run the notebook from the top.
+
+You do not need to recreate the environment every time. Once smif-quant exists,
+activate/use it for future division sessions.
+
+
+================================================
+PART 24 — FASTEST DIAGNOSTIC CHECK FOR BEGINNERS
+================================================
+
+When something fails, do NOT immediately change the project.
+
+First answer these four questions:
+
+1. WHAT FOLDER AM I IN?
+
+       import os
+       print(os.getcwd())
+
+
+2. WHAT FILES CAN PYTHON SEE?
+
+       print(os.listdir())
+
+
+3. WHAT PYTHON IS RUNNING?
+
+       import sys
+       print(sys.executable)
+
+
+4. WHICH PACKAGES ARE INSTALLED?
+
+       import pandas
+       import numpy
+       import yfinance
+
+If those four answers are correct, most basic setup problems have already been
+eliminated.
+
+
+================================================
+PART 25 — FOR CLUB MEMBERS WHO WANT TO EXPERIMENT
+================================================
+
+Once the original notebook runs successfully, THEN experiment.
+
+A safe workflow is:
+
+1. Duplicate the clean notebook.
+2. Give your copy a descriptive name.
+3. Change one thing at a time.
+4. Rerun the relevant cells.
+5. Periodically restart the kernel and run all.
+6. Compare the results with the original notebook.
+7. Keep raw source data unchanged whenever possible.
+
+Example:
+
+    testing-material-quants-smif.ipynb
+    testing-material-quants-smif_experiments.ipynb
+
+This makes it much easier to learn without destroying the baseline.
+
+
+================================================
+PART 26 — IF YOU ADD NEW DATA FILES LATER
+================================================
+
+Prefer a portable project structure.
+
+For example:
+
+    smif-quant-files/
+    |
+    |-- notebooks/
+    |-- data/
+    |-- outputs/
+
+Then code could use a RELATIVE path such as:
+
+    pd.read_csv('../data/new_file.csv')
+
+rather than:
+
+    pd.read_csv('C:\\Users\\Daniel\\Desktop\\new_file.csv')
+
+Relative paths make the repository usable by everyone.
+
+For the CURRENT supplied notebooks, however, the simplest choice is to preserve
+the existing structure and keep the referenced CSV files where the notebooks can
+find them.
+
+
+================================================
+PART 27 — INSTRUCTOR / REPOSITORY MAINTENANCE NOTES
+================================================
+
+To make this workshop easier for beginners:
+
+1. Keep one clean, known-working notebook in the repository.
+
+2. Keep required data files beside it unless you intentionally redesign the file
+   paths.
+
+3. Avoid personal absolute paths.
+
+4. Test the repository by downloading it to a NEW temporary folder and running it
+   from scratch.
+
+5. Test with a fresh kernel.
+
+6. Ideally test with the same smif-quant environment instructions students receive.
+
+7. Do not assume a notebook works just because it works on the instructor's
+   computer.
+
+8. Before publishing an update, use:
+
+       Restart Kernel -> Run All
+
+9. Remove secrets, personal information, and unauthorized copyrighted material
+   before pushing to a public repository.
+
+10. Keep environment.yml updated whenever the supported Python version or required
+    packages change so everyone can reproduce the same smif-quant environment.
+
+
+================================================
+FINAL MENTAL MODEL
+================================================
+
+Think about the project like this:
+
+    GITHUB
+      stores/distributes the project
+             |
+             v
+    LOCAL PROJECT FOLDER
+      keeps notebooks + data together
+             |
+             v
+    CONDA ENVIRONMENT: smif-quant
+      provides Python 3.14 + the division packages
+             |
+             v
+    JUPYTERLAB OR VS CODE
+      opens and runs the notebook using Python (smif-quant)
+             |
+             v
+    NOTEBOOK CELLS
+      read CSVs, calculate results, create charts,
+      and sometimes retrieve live market data
+
+
+If you remember only five rules, remember these:
+
+1. GitHub stores the files; it does not normally run the notebook.
+
+2. Download and EXTRACT the entire project.
+
+3. Keep the notebook and required CSV files together.
+
+4. Do NOT use base/root; use smif-quant with the Python (smif-quant) kernel.
+
+5. Run the notebook from top to bottom before experimenting.
+
+
+END OF GUIDE
